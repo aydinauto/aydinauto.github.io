@@ -99,6 +99,18 @@ border-bottom:1px solid rgba(255,255,255,.06);
 .logo{
 font-size:30px;
 font-weight:900;
+
+display:flex;
+align-items:center;
+width:140px;
+overflow:hidden;
+}
+.logo img{
+    
+width:100%;
+height:auto;
+display:block;
+object-fit:contain;
 }
 
 .menu-btn{

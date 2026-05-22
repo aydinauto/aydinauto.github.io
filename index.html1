@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -7,6 +7,8 @@
 <title>AYDIN AUTO</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
 
@@ -19,7 +21,8 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#050505;
+background:
+radial-gradient(circle at top left,#1a1a1a,#050505 60%);
 color:white;
 overflow-x:hidden;
 }
@@ -35,14 +38,14 @@ display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-z-index:99999;
-animation:hideLoader 4s forwards;
+z-index:999999;
+transition:1s;
 }
 
 #loader h1{
-font-size:55px;
+font-size:60px;
 font-weight:800;
-animation:zoom 1.5s infinite alternate;
+animation:pulse 1.2s infinite alternate;
 }
 
 #loader p{
@@ -51,39 +54,31 @@ font-size:20px;
 color:#aaa;
 }
 
-@keyframes zoom{
+@keyframes pulse{
 from{transform:scale(1);}
 to{transform:scale(1.08);}
 }
 
-@keyframes hideLoader{
-0%{opacity:1;}
-85%{opacity:1;}
-100%{
-opacity:0;
-visibility:hidden;
-}
-}
-
 /* NAVBAR */
 
-.topbar{
+.navbar{
 position:fixed;
 top:0;
 left:0;
 width:100%;
-padding:18px 25px;
+padding:18px 22px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 background:rgba(0,0,0,0.45);
-backdrop-filter:blur(12px);
-z-index:999;
+backdrop-filter:blur(14px);
+z-index:9999;
 }
 
 .logo{
-font-size:30px;
+font-size:32px;
 font-weight:800;
+letter-spacing:2px;
 }
 
 .menu-btn{
@@ -91,7 +86,7 @@ font-size:34px;
 cursor:pointer;
 }
 
-/* MENU */
+/* SIDE MENU */
 
 .side-menu{
 position:fixed;
@@ -99,9 +94,9 @@ top:0;
 right:-320px;
 width:300px;
 height:100%;
-background:#0c0c0c;
+background:#0d0d0d;
+z-index:99999;
 transition:0.4s;
-z-index:9999;
 padding-top:100px;
 }
 
@@ -111,9 +106,9 @@ right:0;
 
 .close-btn{
 position:absolute;
-top:20px;
+top:25px;
 right:25px;
-font-size:35px;
+font-size:34px;
 cursor:pointer;
 }
 
@@ -131,7 +126,7 @@ border-bottom:1px solid #181818;
 .hero{
 height:100vh;
 background:
-linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.85)),
+linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,.88)),
 url('35C20A1F-C4C5-4C2D-AE1C-BB8B82E47414.png');
 
 background-size:cover;
@@ -141,15 +136,30 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
+position:relative;
+}
+
+.hero::after{
+content:'';
+position:absolute;
+width:300px;
+height:300px;
+background:#d4af3735;
+filter:blur(100px);
+top:80px;
+right:-50px;
+border-radius:50%;
 }
 
 .hero-content{
+z-index:2;
 animation:fadeUp 1.5s;
 }
 
 .hero-content h1{
-font-size:78px;
+font-size:72px;
 font-weight:800;
+line-height:1.1;
 }
 
 .hero-content p{
@@ -168,11 +178,11 @@ flex-wrap:wrap;
 }
 
 .hero-buttons a{
-padding:16px 32px;
-border-radius:15px;
+padding:16px 34px;
+border-radius:18px;
 font-size:18px;
-text-decoration:none;
 font-weight:700;
+text-decoration:none;
 transition:0.3s;
 }
 
@@ -186,7 +196,11 @@ background:#d4af37;
 color:black;
 }
 
-/* LANGUAGE */
+.hero-buttons a:hover{
+transform:translateY(-5px);
+}
+
+/* LANG */
 
 .languages{
 position:absolute;
@@ -198,20 +212,21 @@ z-index:999;
 }
 
 .languages button{
-padding:10px 15px;
+padding:12px 18px;
 border:none;
-border-radius:10px;
-background:#151515;
+background:#121212;
 color:white;
+border-radius:14px;
+font-size:15px;
 cursor:pointer;
 }
 
 /* TITLES */
 
 .section-title{
-font-size:55px;
+font-size:52px;
 font-weight:800;
-padding:70px 25px 20px;
+padding:80px 25px 20px;
 }
 
 /* STATS */
@@ -219,19 +234,20 @@ padding:70px 25px 20px;
 .stats{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:20px;
+gap:18px;
 padding:25px;
 }
 
 .stat{
 background:#101010;
 padding:35px 20px;
-border-radius:25px;
+border-radius:30px;
 text-align:center;
+box-shadow:0 0 25px rgba(255,255,255,0.03);
 }
 
 .stat h2{
-font-size:42px;
+font-size:40px;
 margin-bottom:10px;
 }
 
@@ -248,13 +264,13 @@ gap:35px;
 background:#0f0f0f;
 border-radius:35px;
 overflow:hidden;
-box-shadow:0 0 25px rgba(255,255,255,0.04);
-transition:0.4s;
 position:relative;
+box-shadow:0 0 30px rgba(255,255,255,0.03);
+transition:0.4s;
 }
 
 .car:hover{
-transform:translateY(-6px);
+transform:translateY(-7px);
 }
 
 .car img{
@@ -268,10 +284,10 @@ display:block;
 position:absolute;
 top:20px;
 right:20px;
-font-size:30px;
-background:rgba(0,0,0,0.4);
-padding:10px;
+background:rgba(0,0,0,.5);
+padding:12px;
 border-radius:50%;
+font-size:25px;
 }
 
 .car-info{
@@ -279,7 +295,7 @@ padding:28px;
 }
 
 .car-info h2{
-font-size:40px;
+font-size:42px;
 margin-bottom:15px;
 }
 
@@ -297,11 +313,10 @@ margin-top:20px;
 }
 
 .spec{
-background:#161616;
+background:#171717;
 padding:14px;
-border-radius:14px;
+border-radius:15px;
 text-align:center;
-font-size:15px;
 }
 
 .badge{
@@ -314,39 +329,95 @@ font-size:14px;
 font-weight:700;
 }
 
-/* WHY */
+/* TRADE */
 
-.why{
+.trade{
 padding:25px;
-display:flex;
-flex-direction:column;
-gap:20px;
 }
 
-.why-box{
+.trade-box{
 background:#101010;
 padding:30px;
-border-radius:25px;
+border-radius:30px;
 }
 
-.why-box h3{
-font-size:30px;
-margin-bottom:10px;
+.trade-box h2{
+font-size:40px;
+margin-bottom:20px;
 }
 
-/* REVIEWS */
-
-.reviews{
-padding:20px;
-display:flex;
-flex-direction:column;
-gap:20px;
+.trade-box select,
+.trade-box input{
+width:100%;
+padding:18px;
+margin-bottom:15px;
+border:none;
+border-radius:15px;
+background:#181818;
+color:white;
+font-size:16px;
 }
 
-.review{
-background:#101010;
+.trade-box button{
+width:100%;
+padding:18px;
+border:none;
+background:#d4af37;
+color:black;
+font-weight:700;
+border-radius:15px;
+font-size:18px;
+cursor:pointer;
+}
+
+.result{
+margin-top:20px;
+font-size:22px;
+font-weight:700;
+text-align:center;
+}
+
+/* AI */
+
+.ai-chat{
 padding:25px;
-border-radius:25px;
+}
+
+.ai-box{
+background:#101010;
+padding:30px;
+border-radius:30px;
+}
+
+.ai-box textarea{
+width:100%;
+height:120px;
+padding:18px;
+background:#181818;
+border:none;
+border-radius:15px;
+color:white;
+font-size:16px;
+resize:none;
+}
+
+.ai-box button{
+width:100%;
+padding:18px;
+margin-top:15px;
+border:none;
+background:white;
+color:black;
+font-size:18px;
+font-weight:700;
+border-radius:15px;
+cursor:pointer;
+}
+
+.ai-response{
+margin-top:20px;
+color:#ccc;
+line-height:1.8;
 }
 
 /* CONTACT */
@@ -354,11 +425,10 @@ border-radius:25px;
 .contact{
 padding:80px 25px;
 text-align:center;
-background:#0a0a0a;
 }
 
 .contact h1{
-font-size:55px;
+font-size:52px;
 margin-bottom:30px;
 }
 
@@ -377,10 +447,10 @@ gap:15px;
 
 .contact-buttons a{
 padding:18px;
-border-radius:16px;
-text-decoration:none;
+border-radius:18px;
 font-size:20px;
 font-weight:700;
+text-decoration:none;
 }
 
 .whatsapp{
@@ -406,6 +476,26 @@ border:none;
 border-radius:30px;
 }
 
+/* FLOAT */
+
+.float{
+position:fixed;
+bottom:25px;
+right:25px;
+width:70px;
+height:70px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:36px;
+color:white;
+text-decoration:none;
+z-index:9999;
+box-shadow:0 0 30px rgba(37,211,102,0.5);
+}
+
 /* FOOTER */
 
 .footer{
@@ -415,27 +505,7 @@ font-size:16px;
 color:#777;
 }
 
-/* FLOAT */
-
-.float{
-position:fixed;
-bottom:25px;
-right:25px;
-width:65px;
-height:65px;
-background:#25D366;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:34px;
-text-decoration:none;
-color:white;
-z-index:999;
-box-shadow:0 0 25px rgba(37,211,102,0.5);
-}
-
-/* ANIMATIONS */
+/* ANIM */
 
 @keyframes fadeUp{
 from{
@@ -453,16 +523,12 @@ transform:translateY(0);
 
 <body>
 
-<!-- LOADER -->
-
 <div id="loader">
 <h1>AYDIN AUTO</h1>
-<p>Hoşgeldiniz</p>
+<p>Hoşgeldiniz...</p>
 </div>
 
-<!-- NAVBAR -->
-
-<div class="topbar">
+<div class="navbar">
 
 <div class="logo">
 AYDIN AUTO
@@ -474,15 +540,11 @@ AYDIN AUTO
 
 </div>
 
-<!-- LANGUAGE -->
-
 <div class="languages">
 <button onclick="setLang('tr')">TR</button>
 <button onclick="setLang('en')">EN</button>
 <button onclick="setLang('ar')">AR</button>
 </div>
-
-<!-- MENU -->
 
 <div class="side-menu" id="sideMenu">
 
@@ -492,23 +554,22 @@ AYDIN AUTO
 
 <a href="#">Ana Sayfa</a>
 <a href="#cars">Araçlarımız</a>
-<a href="#reviews">Yorumlar</a>
+<a href="#trade">Takas</a>
+<a href="#ai">AI Destek</a>
 <a href="#contact">İletişim</a>
 
 </div>
-
-<!-- HERO -->
 
 <section class="hero">
 
 <div class="hero-content">
 
-<h1 id="title">
+<h1 id="heroTitle">
 AYDIN AUTO
 </h1>
 
-<p id="subtitle">
-Premium otomobil deneyimi.
+<p id="heroText">
+Premium otomobil deneyimi ve lüks yaşam tarzı.
 </p>
 
 <div class="hero-buttons">
@@ -527,7 +588,9 @@ Araçlarımız
 
 </section>
 
-<!-- STATS -->
+<h1 class="section-title">
+İstatistikler
+</h1>
 
 <section class="stats">
 
@@ -553,8 +616,6 @@ Araçlarımız
 
 </section>
 
-<!-- CARS -->
-
 <h1 class="section-title" id="cars">
 Araçlarımız
 </h1>
@@ -563,7 +624,7 @@ Araçlarımız
 
 <div class="car">
 
-<div class="favorite">❤️</div>
+<div class="favorite">🔥</div>
 
 <img src="8785FCE8-273D-499B-B370-3481D5DAC245.png">
 
@@ -572,7 +633,7 @@ Araçlarımız
 <h2>BMW 7 Serisi</h2>
 
 <p>
-Luxury sedan deneyimi.
+Luxury sedan dünyasının zirvesi.
 </p>
 
 <div class="specs">
@@ -594,7 +655,7 @@ STOKTA
 
 <div class="car">
 
-<div class="favorite">🔥</div>
+<div class="favorite">❤️</div>
 
 <img src="73134C2B-05A4-4A36-B23E-8AD0646CA75F.png">
 
@@ -625,27 +686,57 @@ YENİ GELEN
 
 </section>
 
-<!-- REVIEWS -->
-
-<h1 class="section-title" id="reviews">
-Yorumlar
+<h1 class="section-title" id="trade">
+Takas Hesaplama
 </h1>
 
-<section class="reviews">
+<section class="trade">
 
-<div class="review">
-<h3>Ahmet K.</h3>
-<p>Gerçekten premium hizmet.</p>
+<div class="trade-box">
+
+<h2>Aracınızı Değerlendirin</h2>
+
+<select id="brand">
+<option>BMW</option>
+<option>Mercedes</option>
+<option>Audi</option>
+<option>Porsche</option>
+</select>
+
+<input type="number" id="year" placeholder="Model Yılı">
+
+<button onclick="calculatePrice()">
+Tahmini Fiyat Hesapla
+</button>
+
+<div class="result" id="result">
 </div>
 
-<div class="review">
-<h3>Emirhan T.</h3>
-<p>Araçlar anlatıldığı gibi.</p>
 </div>
 
 </section>
 
-<!-- CONTACT -->
+<h1 class="section-title" id="ai">
+AI Müşteri Hizmetleri
+</h1>
+
+<section class="ai-chat">
+
+<div class="ai-box">
+
+<textarea id="question"
+placeholder="Bir soru sorun..."></textarea>
+
+<button onclick="askAI()">
+Soruyu Gönder
+</button>
+
+<div class="ai-response" id="aiResponse">
+</div>
+
+</div>
+
+</section>
 
 <section class="contact" id="contact">
 
@@ -657,7 +748,8 @@ Yorumlar
 
 <div class="contact-buttons">
 
-<a class="whatsapp" href="https://wa.me/902125197012">
+<a class="whatsapp"
+href="https://wa.me/902125197012">
 WhatsApp
 </a>
 
@@ -670,8 +762,6 @@ Instagram
 
 </section>
 
-<!-- MAP -->
-
 <section class="map">
 
 <iframe
@@ -680,39 +770,84 @@ src="https://maps.google.com/maps?q=florya&t=&z=13&ie=UTF8&iwloc=&output=embed">
 
 </section>
 
-<!-- FOOTER -->
-
 <div class="footer">
 © 2026 AYDIN AUTO
 </div>
 
-<!-- FLOAT -->
-
-<a href="https://wa.me/902125197012" class="float">
+<a href="https://wa.me/902125197012"
+class="float">
 ☎
 </a>
 
 <script>
 
+window.onload=function(){
+
+setTimeout(()=>{
+document.getElementById("loader").style.opacity="0";
+document.getElementById("loader").style.visibility="hidden";
+},3000);
+
+confetti({
+particleCount:180,
+spread:120,
+origin:{y:0.6}
+});
+
+}
+
 function toggleMenu(){
 document.getElementById("sideMenu").classList.toggle("active");
 }
 
-function setLang(lang){
+function calculatePrice(){
 
-if(lang=="tr"){
-document.getElementById("subtitle").innerHTML=
-"Premium otomobil deneyimi.";
+let year=document.getElementById("year").value;
+
+let base=1500000;
+
+let price=base-(2026-year)*50000;
+
+document.getElementById("result").innerHTML=
+"Tahmini Değer: "+price.toLocaleString()+" TL";
+
 }
 
+function askAI(){
+
+let q=document.getElementById("question").value;
+
+let response="";
+
+if(q.includes("fiyat")){
+response="Size en uygun fiyat teklifini WhatsApp üzerinden sağlayabiliriz.";
+}
+else if(q.includes("takas")){
+response="Takas desteğimiz mevcuttur.";
+}
+else{
+response="AYDIN AUTO premium destek ekibi sizinle ilgilenecektir.";
+}
+
+document.getElementById("aiResponse").innerHTML=response;
+
+}
+
+function setLang(lang){
+
 if(lang=="en"){
-document.getElementById("subtitle").innerHTML=
-"Premium automobile experience.";
+document.getElementById("heroText").innerHTML=
+"Premium automobile experience and luxury lifestyle.";
 }
 
 if(lang=="ar"){
-document.getElementById("subtitle").innerHTML=
+document.getElementById("heroText").innerHTML=
 "تجربة سيارات فاخرة";
+}
+
+if(lang=="tr"){
+document.getElementById("heroText").innerHTML=
+"Premium otomobil deneyimi ve lüks yaşam tarzı.";
 }
 
 }

@@ -1,28 +1,673 @@
-<!-- ÇEKİLİŞ MENÜSÜ -->
 
-<div class="menu-item" onclick="openGiveaway()">
-🎁 Çekiliş
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AYDIN AUTO</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html,body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+scroll-behavior:smooth;
+}
+
+/* LOADER */
+
+#loader{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999999;
+animation:hideLoader 1s forwards;
+animation-delay:1s;
+}
+
+#loader h1{
+font-size:60px;
+font-weight:900;
+letter-spacing:5px;
+animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+
+@keyframes hideLoader{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+/* GLOW */
+
+.glow{
+position:fixed;
+width:500px;
+height:500px;
+background:#ffd70015;
+filter:blur(120px);
+border-radius:50%;
+top:-150px;
+right:-100px;
+z-index:-1;
+animation:moveGlow 8s infinite alternate;
+}
+
+@keyframes moveGlow{
+from{transform:translate(0,0);}
+to{transform:translate(-120px,100px);}
+}
+
+/* NAV */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:18px 22px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(12px);
+z-index:999;
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.logo{
+font-size:30px;
+font-weight:900;
+}
+
+.menu-btn{
+font-size:34px;
+cursor:pointer;
+}
+
+#menu{
+position:fixed;
+top:0;
+right:-100%;
+width:80%;
+height:100%;
+background:#0d0d0d;
+padding:90px 30px;
+transition:.5s;
+z-index:99999;
+}
+
+#menu.active{
+right:0;
+}
+
+.close-btn{
+position:absolute;
+top:20px;
+right:25px;
+font-size:40px;
+cursor:pointer;
+}
+
+#menu a{
+display:block;
+margin:25px 0;
+font-size:28px;
+color:white;
+text-decoration:none;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+background:
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
+url('35C20A1F-C4C5-4C2D-AE1C-BB8B82E47414.png');
+
+background-size:cover;
+background-position:center;
+}
+
+.hero-content h1{
+font-size:72px;
+font-weight:900;
+margin-bottom:20px;
+animation:fadeUp 1s;
+}
+
+.hero-content p{
+font-size:20px;
+opacity:.85;
+max-width:700px;
+line-height:1.7;
+margin:auto;
+animation:fadeUp 1.4s;
+}
+
+.hero-buttons{
+margin-top:35px;
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.hero-buttons button{
+padding:18px 35px;
+border:none;
+border-radius:16px;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.hero-buttons button:hover{
+transform:translateY(-5px);
+}
+
+.btn1{
+background:white;
+color:black;
+}
+
+.btn2{
+background:#ffd700;
+color:black;
+}
+
+/* GIVEAWAY */
+
+.giveaway{
+padding:25px;
+}
+
+.giveaway-box{
+background:#101010;
+padding:30px;
+border-radius:30px;
+position:relative;
+overflow:hidden;
+}
+
+.giveaway-box::before{
+content:'';
+position:absolute;
+width:250px;
+height:250px;
+background:#ffd700;
+filter:blur(120px);
+opacity:.15;
+top:-100px;
+right:-100px;
+}
+
+.giveaway-box h1{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.giveaway-box p{
+opacity:.8;
+line-height:1.8;
+margin-bottom:25px;
+}
+
+.counter{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+}
+
+.counter-card{
+background:#181818;
+padding:20px;
+border-radius:18px;
+text-align:center;
+}
+
+.counter-card h2{
+color:#ffd700;
+font-size:30px;
+}
+
+.join-btn{
+width:100%;
+padding:18px;
+margin-top:20px;
+background:#ffd700;
+border:none;
+border-radius:16px;
+font-weight:800;
+font-size:18px;
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+padding:20px;
+}
+
+.stat{
+background:#101010;
+padding:30px;
+border-radius:25px;
+text-align:center;
+}
+
+.stat h2{
+font-size:42px;
+color:#ffd700;
+}
+
+/* TITLES */
+
+.section-title{
+font-size:42px;
+font-weight:900;
+padding:25px;
+}
+
+/* FILTER */
+
+.filter{
+padding:20px;
+display:flex;
+gap:10px;
+overflow:auto;
+}
+
+.filter button{
+padding:14px 20px;
+border:none;
+border-radius:14px;
+background:#151515;
+color:white;
+font-weight:700;
+}
+
+/* CARS */
+
+.cars{
+padding:20px;
+display:flex;
+flex-direction:column;
+gap:30px;
+}
+
+.car{
+background:#101010;
+border-radius:30px;
+overflow:hidden;
+position:relative;
+transition:.4s;
+}
+
+.car:hover{
+transform:translateY(-8px);
+box-shadow:0 0 30px rgba(255,215,0,.12);
+}
+
+.favorite{
+position:absolute;
+top:20px;
+right:20px;
+width:50px;
+height:50px;
+background:rgba(0,0,0,.5);
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:24px;
+}
+
+.view{
+position:absolute;
+bottom:20px;
+right:20px;
+background:#000000aa;
+padding:10px 14px;
+border-radius:12px;
+font-size:14px;
+}
+
+.car img{
+width:100%;
+height:280px;
+object-fit:cover;
+}
+
+.car-content{
+padding:25px;
+}
+
+.car-content h2{
+font-size:36px;
+margin-bottom:10px;
+}
+
+.car-content p{
+opacity:.8;
+line-height:1.7;
+margin-bottom:20px;
+}
+
+.specs{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.spec{
+background:#181818;
+padding:14px;
+border-radius:14px;
+text-align:center;
+}
+
+/* TRADE */
+
+.trade{
+padding:20px;
+}
+
+.trade-box{
+background:#101010;
+padding:30px;
+border-radius:30px;
+}
+
+.trade-box input{
+width:100%;
+padding:18px;
+margin:12px 0;
+background:#181818;
+border:none;
+border-radius:15px;
+color:white;
+}
+
+.trade-box button{
+width:100%;
+padding:18px;
+background:#ffd700;
+border:none;
+border-radius:15px;
+font-size:18px;
+font-weight:700;
+}
+
+#priceResult{
+margin-top:20px;
+font-size:24px;
+font-weight:700;
+color:#ffd700;
+}
+
+/* AI */
+
+.ai{
+padding:20px;
+}
+
+.ai-box{
+background:#101010;
+padding:25px;
+border-radius:30px;
+}
+
+.chat{
+height:250px;
+overflow:auto;
+background:#151515;
+padding:15px;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+.msg{
+background:#1d1d1d;
+padding:12px;
+border-radius:12px;
+margin:10px 0;
+}
+
+.ai input{
+width:100%;
+padding:18px;
+background:#181818;
+border:none;
+border-radius:15px;
+color:white;
+}
+
+.ai button{
+width:100%;
+padding:16px;
+margin-top:12px;
+background:#ffd700;
+border:none;
+border-radius:15px;
+font-weight:700;
+}
+
+/* APPOINTMENT */
+
+.appointment{
+padding:20px;
+}
+
+.appointment-box{
+background:#101010;
+padding:30px;
+border-radius:30px;
+}
+
+.appointment-box input{
+width:100%;
+padding:18px;
+margin:12px 0;
+background:#181818;
+border:none;
+border-radius:15px;
+color:white;
+}
+
+.appointment-box button{
+width:100%;
+padding:18px;
+background:white;
+color:black;
+border:none;
+border-radius:15px;
+font-weight:700;
+}
+
+/* REVIEWS */
+
+.reviews{
+padding:20px;
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.review{
+background:#101010;
+padding:25px;
+border-radius:25px;
+}
+
+/* CONTACT */
+
+.contact{
+padding:20px;
+}
+
+.contact-box{
+background:#101010;
+padding:30px;
+border-radius:30px;
+}
+
+.contact-item{
+margin:18px 0;
+font-size:20px;
+}
+
+iframe{
+width:100%;
+height:300px;
+border:none;
+border-radius:25px;
+margin-top:20px;
+}
+
+/* FLOAT */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+width:70px;
+height:70px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:35px;
+box-shadow:0 0 30px #25D366;
+z-index:999;
+text-decoration:none;
+}
+
+/* FOOTER */
+
+footer{
+padding:40px 20px;
+text-align:center;
+opacity:.7;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div id="loader">
+<h1>AYDIN AUTO</h1>
 </div>
 
-<!-- GIVEAWAY POPUP -->
+<nav>
 
-<div id="giveawayPopup">
+<div class="logo">
+AYDIN AUTO
+</div>
 
-<div class="giveaway-box">
+<div class="menu-btn" onclick="openMenu()">
+☰
+</div>
 
-<div class="close-giveaway" onclick="closeGiveaway()">
+</nav>
+
+<div id="menu">
+
+<div class="close-btn" onclick="closeMenu()">
 ✕
 </div>
 
-<h1>🎁 MINI COOPER ÇEKİLİŞİ</h1>
+<a href="#">Ana Sayfa</a>
+<a href="#cars">Araçlarımız</a>
+<a href="#trade">Takas</a>
+<a href="#ai">AI Destek</a>
+<a href="#appointment">Randevu</a>
+<a href="#contact">İletişim</a>
 
-<img src="02F96023-A74D-4FDE-A4A1-1C2C9EDD6195.jpeg" class="giveaway-car">
+</div>
 
-<p class="giveaway-text">
-AYDIN AUTO olarak 3 kişiye MINI COOPER hediye ediyoruz.
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>AYDIN AUTO</h1>
+
+<p>
+Premium otomobil deneyimi ve ultra lüks galeri sistemi.
 </p>
 
-<div class="counter-box">
+<div class="hero-buttons">
+
+<button class="btn1">
+Araçlarımız
+</button>
+
+<button class="btn2">
+İletişim
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="giveaway">
+
+<div class="giveaway-box">
+
+<h1>🎁 MINI COOPER ÇEKİLİŞİ</h1>
+
+<p>
+Instagram hesabımızı takip edip son gönderiyi beğenen 3 kişiye MINI COOPER hediye ediyoruz.
+</p>
+
+<div class="counter">
 
 <div class="counter-card">
 <h2>719</h2>
@@ -41,28 +686,6 @@ AYDIN AUTO olarak 3 kişiye MINI COOPER hediye ediyoruz.
 
 </div>
 
-<div class="rules">
-
-<h3>Katılım Şartları</h3>
-
-<ul>
-
-<li>Instagram hesabını takip et</li>
-
-<li>Son gönderiyi beğen</li>
-
-<li>2 arkadaşını etiketle</li>
-
-<li>Hikayende paylaş</li>
-
-</ul>
-
-</div>
-
-<a href="https://instagram.com/aydinautoresmi" class="insta-btn">
-Instagram’a Git
-</a>
-
 <button class="join-btn" onclick="joinGiveaway()">
 Çekilişe Katıl
 </button>
@@ -71,194 +694,289 @@ Instagram’a Git
 
 </div>
 
+</section>
+
+<section class="stats">
+
+<div class="stat">
+<h2>500+</h2>
+<p>Satılan Araç</p>
 </div>
 
-<style>
+<div class="stat">
+<h2>4.9★</h2>
+<p>Müşteri Puanı</p>
+</div>
 
-#giveawayPopup{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.92);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:999999;
-padding:20px;
-backdrop-filter:blur(12px);
-animation:fadeIn .5s;
-}
+<div class="stat">
+<h2>24/7</h2>
+<p>Canlı Destek</p>
+</div>
 
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:scale(.9);
-}
-to{
-opacity:1;
-transform:scale(1);
-}
-}
+<div class="stat">
+<h2>12+</h2>
+<p>Premium Marka</p>
+</div>
 
-.giveaway-box{
-background:#090909;
-width:100%;
-max-width:420px;
-border-radius:35px;
-padding:30px;
-position:relative;
-border:1px solid rgba(255,255,255,.08);
-box-shadow:0 0 60px rgba(255,215,0,.08);
-text-align:center;
-overflow:hidden;
-}
+</section>
 
-.giveaway-box::before{
-content:'';
-position:absolute;
-width:250px;
-height:250px;
-background:#ffd700;
-filter:blur(120px);
-opacity:.15;
-top:-100px;
-right:-100px;
-}
+<div class="filter">
 
-.close-giveaway{
-position:absolute;
-top:20px;
-right:20px;
-font-size:34px;
-cursor:pointer;
-color:white;
-}
+<button>Tümü</button>
+<button>SUV</button>
+<button>Sedan</button>
+<button>Sport</button>
+<button>Luxury</button>
 
-.giveaway-box h1{
-font-size:34px;
-margin-bottom:20px;
-font-weight:900;
-}
+</div>
 
-.giveaway-car{
-width:100%;
-height:240px;
-object-fit:cover;
-border-radius:25px;
-margin-bottom:20px;
-}
+<h1 class="section-title">
+Araçlarımız
+</h1>
 
-.giveaway-text{
-opacity:.82;
-line-height:1.7;
-margin-bottom:25px;
-}
+<section class="cars" id="cars">
 
-.counter-box{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-bottom:25px;
-}
+<div class="car">
 
-.counter-card{
-background:#151515;
-padding:18px 10px;
-border-radius:18px;
-}
+<div class="favorite">❤️</div>
 
-.counter-card h2{
-font-size:26px;
-color:#ffd700;
-margin-bottom:5px;
-}
+<div class="view">
+👁 2.541 görüntülenme
+</div>
 
-.counter-card span{
-font-size:13px;
-opacity:.7;
-}
+<img src="02F96023-A74D-4FDE-A4A1-1C2C9EDD6195.jpeg">
 
-.rules{
-background:#121212;
-padding:20px;
-border-radius:20px;
-margin-bottom:20px;
-text-align:left;
-}
+<div class="car-content">
 
-.rules h3{
-margin-bottom:12px;
-}
+<h2>Lamborghini Urus</h2>
 
-.rules ul{
-padding-left:18px;
-line-height:2;
-opacity:.8;
-}
+<p>
+Süper spor SUV deneyimi.
+</p>
 
-.insta-btn{
-display:block;
-background:white;
-color:black;
-padding:18px;
-border-radius:18px;
-font-weight:700;
-text-decoration:none;
-margin-bottom:15px;
-transition:.3s;
-}
+<div class="specs">
 
-.insta-btn:hover{
-transform:translateY(-3px);
-}
+<div class="spec">2024</div>
+<div class="spec">650 HP</div>
+<div class="spec">4.0 V8</div>
+<div class="spec">8.000 KM</div>
 
-.join-btn{
-width:100%;
-padding:18px;
-border:none;
-border-radius:18px;
-background:#ffd700;
-font-size:18px;
-font-weight:800;
-cursor:pointer;
-transition:.3s;
-}
+</div>
 
-.join-btn:hover{
-transform:scale(1.03);
-}
+</div>
 
-#joinText{
-margin-top:18px;
-font-size:15px;
-color:#00ff88;
-font-weight:600;
-}
+</div>
 
-.language-box{
-display:flex;
-gap:10px;
-margin-top:15px;
-justify-content:center;
-}
+<div class="car">
 
-.lang-btn{
-padding:12px 18px;
-background:#151515;
-border-radius:14px;
-cursor:pointer;
-font-weight:700;
-}
+<div class="favorite">🔥</div>
 
-</style>
+<div class="view">
+👁 1.912 görüntülenme
+</div>
+
+<img src="1E77547B-A49D-4769-8CE2-CE3C2ECC6960.jpeg">
+
+<div class="car-content">
+
+<h2>Mercedes G63 AMG</h2>
+
+<p>
+Gerçek AMG ruhu.
+</p>
+
+<div class="specs">
+
+<div class="spec">2025</div>
+<div class="spec">585 HP</div>
+<div class="spec">4.0 V8</div>
+<div class="spec">5.000 KM</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="trade" id="trade">
+
+<h1 class="section-title">
+Takas Fiyatı Al
+</h1>
+
+<div class="trade-box">
+
+<input type="text" placeholder="Marka">
+<input type="text" placeholder="Model">
+<input type="number" id="year" placeholder="Yıl">
+
+<button onclick="calculatePrice()">
+Fiyat Hesapla
+</button>
+
+<div id="priceResult"></div>
+
+</div>
+
+</section>
+
+<section class="ai" id="ai">
+
+<h1 class="section-title">
+AI Müşteri Hizmeti
+</h1>
+
+<div class="ai-box">
+
+<div class="chat" id="chat">
+
+<div class="msg">
+🤖 Merhaba, size nasıl yardımcı olabilirim?
+</div>
+
+</div>
+
+<input type="text"
+id="userInput"
+placeholder="Mesaj yazın...">
+
+<button onclick="sendMessage()">
+Gönder
+</button>
+
+</div>
+
+</section>
+
+<section class="appointment" id="appointment">
+
+<h1 class="section-title">
+Randevu Oluştur
+</h1>
+
+<div class="appointment-box">
+
+<input type="text" placeholder="Ad Soyad">
+<input type="date">
+<input type="time">
+
+<button>
+Randevu Oluştur
+</button>
+
+</div>
+
+</section>
+
+<section class="reviews">
+
+<h1 class="section-title">
+Müşteri Yorumları
+</h1>
+
+<div class="review">
+★★★★★ Hayatımda gördüğüm en premium galeri.
+</div>
+
+<div class="review">
+★★★★★ Araçlar kusursuzdu.
+</div>
+
+<div class="review">
+★★★★★ Gerçek VIP hizmet.
+</div>
+
+</section>
+
+<section class="contact" id="contact">
+
+<h1 class="section-title">
+İletişim
+</h1>
+
+<div class="contact-box">
+
+<div class="contact-item">
+📞 +90 212 519 70 12
+</div>
+
+<div class="contact-item">
+📧 aydinauto@help.business
+</div>
+
+<div class="contact-item">
+📍 İstanbul
+</div>
+
+<iframe src="https://maps.google.com/maps?q=istanbul&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+
+</div>
+
+</section>
+
+<a class="whatsapp"
+href="https://wa.me/902125197012">
+📞
+</a>
+
+<footer>
+© 2026 AYDIN AUTO
+</footer>
 
 <script>
 
-function closeGiveaway(){
-document.getElementById("giveawayPopup").style.display="none";
+function openMenu(){
+document.getElementById("menu").classList.add("active");
 }
 
-function openGiveaway(){
-document.getElementById("giveawayPopup").style.display="flex";
+function closeMenu(){
+document.getElementById("menu").classList.remove("active");
+}
+
+function calculatePrice(){
+
+let year=
+document.getElementById("year").value;
+
+let price=
+5000000-(2026-year)*150000;
+
+if(price<300000){
+price=300000;
+}
+
+document.getElementById("priceResult").innerHTML=
+"Tahmini Teklif: "+
+price.toLocaleString()+" TL";
+
+}
+
+function sendMessage(){
+
+let input=
+document.getElementById("userInput");
+
+let chat=
+document.getElementById("chat");
+
+if(input.value=="") return;
+
+chat.innerHTML+=
+'<div class="msg">🧑 '+input.value+'</div>';
+
+setTimeout(()=>{
+
+chat.innerHTML+=
+'<div class="msg">🤖 Premium destek ekibimiz size yardımcı olacaktır.</div>';
+
+chat.scrollTop=chat.scrollHeight;
+
+},700);
+
+input.value="";
+
 }
 
 function joinGiveaway(){
@@ -266,66 +984,9 @@ function joinGiveaway(){
 document.getElementById("joinText").innerHTML=
 "🎉 Çekilişe başarıyla katıldınız!";
 
-confettiEffect();
-
 }
-
-function confettiEffect(){
-
-for(let i=0;i<80;i++){
-
-let conf=document.createElement("div");
-
-conf.style.position="fixed";
-conf.style.width="10px";
-conf.style.height="10px";
-conf.style.background=
-["#ffd700","#ffffff","#00ff88","#ff0033"]
-[Math.floor(Math.random()*4)];
-
-conf.style.left=Math.random()*100+"vw";
-conf.style.top="-20px";
-conf.style.zIndex="9999999";
-conf.style.borderRadius="50%";
-
-document.body.appendChild(conf);
-
-let fall=Math.random()*5+3;
-
-conf.animate([
-
-{
-transform:"translateY(0px) rotate(0deg)",
-opacity:1
-},
-
-{
-transform:`translateY(${window.innerHeight+200}px)
-rotate(720deg)`,
-opacity:0
-}
-
-],{
-
-duration:fall*1000
-
-});
-
-setTimeout(()=>{
-conf.remove();
-},6000);
-
-}
-
-}
-
-/* OTOMATİK AÇILIŞ */
-
-setTimeout(()=>{
-
-document.getElementById("giveawayPopup")
-.style.display="flex";
-
-},1200);
 
 </script>
+
+</body>
+</html>

@@ -318,7 +318,7 @@ Süper spor ruhunu dünyasına taşıyan gerçek canavar.
 
 <p>📞 +90 212 519 70 12</p>
 
-<p>📧 info@aydinauto.com</p> </p>
+<p>📧 info@aydinauto.com</p>
 
 <p>📱 WhatsApp: +90 552 555 00 00</p>
 

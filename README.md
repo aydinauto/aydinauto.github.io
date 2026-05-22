@@ -609,7 +609,7 @@ transform:translateY(0);
 
 
 <div class="logo">
-<img src="logo.png">
+<img src="FAF21EC3-BCFA-40B2-AC4F-6C1C3CB52F95.png">
 </div>
 <div class="menu-btn" onclick="openMenu()">
 ☰

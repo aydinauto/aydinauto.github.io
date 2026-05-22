@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>AYDIN AUTO</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -25,126 +26,149 @@ overflow-x:hidden;
 header{
 height:100vh;
 background:
-linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.95)),
-url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1400&auto=format&fit=crop');
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.8)),
+url('35C20A1F-C4C5-4C2D-AE1C-BB8B82E47414.png');
 background-size:cover;
 background-position:center;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 text-align:center;
 padding:20px;
 }
 
 .hero h1{
-font-size:60px;
-font-weight:700;
-letter-spacing:3px;
+font-size:70px;
+font-weight:800;
+letter-spacing:4px;
 }
 
 .hero p{
 margin-top:15px;
-font-size:20px;
-color:#d6d6d6;
+font-size:22px;
+color:#d1d1d1;
 }
 
-.btn{
+.hero a{
 display:inline-block;
-margin-top:30px;
+margin-top:35px;
 padding:15px 40px;
 background:#d4af37;
 color:black;
 text-decoration:none;
-border-radius:12px;
 font-weight:600;
-transition:.3s;
-}
-
-.btn:hover{
-transform:scale(1.05);
-}
-
-.section{
-padding:70px 20px;
-max-width:1200px;
-margin:auto;
+border-radius:14px;
 }
 
 .section-title{
-font-size:38px;
-margin-bottom:40px;
 text-align:center;
+font-size:48px;
+margin:70px 0 40px;
+font-weight:700;
 }
 
 .cars{
+width:92%;
+max-width:1200px;
+margin:auto;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+grid-template-columns:1fr;
+gap:35px;
+padding-bottom:60px;
 }
 
-.card{
-background:#111;
-border-radius:22px;
+.car-card{
+background:#101010;
+border-radius:30px;
 overflow:hidden;
-transition:.3s;
-box-shadow:0 0 20px rgba(0,0,0,.4);
+border:1px solid #1f1f1f;
+box-shadow:0 10px 40px rgba(0,0,0,.5);
 }
 
-.card:hover{
-transform:translateY(-8px);
-}
-
-.card img{
+.car-card img{
 width:100%;
-height:240px;
-object-fit:cover;
+display:block;
 }
 
-.card-content{
-padding:20px;
+.car-info{
+padding:30px;
 }
 
-.card-content h3{
-font-size:26px;
-margin-bottom:10px;
+.car-info h2{
+font-size:38px;
+margin-bottom:12px;
 }
 
-.card-content p{
+.car-info p{
+font-size:18px;
 color:#bdbdbd;
-line-height:1.6;
+line-height:1.7;
 }
 
 .branches{
+width:92%;
+max-width:1200px;
+margin:60px auto;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-margin-top:40px;
+gap:25px;
 }
 
 .branch{
 background:#111;
-padding:30px;
-border-radius:20px;
+padding:35px;
+border-radius:25px;
 text-align:center;
 border:1px solid #222;
 }
 
 .branch h3{
-font-size:28px;
-margin-bottom:10px;
+font-size:30px;
 color:#d4af37;
+margin-bottom:10px;
+}
+
+.branch p{
+color:#aaa;
+font-size:17px;
 }
 
 footer{
-padding:40px 20px;
+margin-top:70px;
+padding:50px 20px;
 text-align:center;
 background:#0b0b0b;
-margin-top:50px;
-border-top:1px solid #222;
+border-top:1px solid #1a1a1a;
+}
+
+footer h2{
+font-size:36px;
+margin-bottom:12px;
 }
 
 footer p{
 color:#888;
+font-size:17px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:48px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.section-title{
+font-size:38px;
+}
+
+.car-info h2{
+font-size:30px;
+}
+
 }
 
 </style>
@@ -153,56 +177,84 @@ color:#888;
 <body>
 
 <header>
+
 <div class="hero">
+
 <h1>AYDIN AUTO</h1>
+
 <p>Premium Otomobil Deneyimi</p>
 
-<a href="https://instagram.com/aydinautoresmi" class="btn">
+<a href="https://instagram.com/aydinautoresmi">
 Instagram
 </a>
 
 </div>
+
 </header>
 
-<section class="section">
+<h2 class="section-title">Araçlarımız</h2>
 
-<h2 class="section-title">Öne Çıkan Araçlar</h2>
+<section class="cars">
 
-<div class="cars">
+<div class="car-card">
+<img src="062B7BCA-316E-49EE-AC93-179B9EC6AC71.png">
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?q=80&w=1200&auto=format&fit=crop">
-<div class="card-content">
-<h3>BMW 7 Serisi</h3>
-<p>Lüks tasarım, premium sürüş deneyimi ve üst düzey konfor.</p>
+<div class="car-info">
+<h2>Porsche Cayenne</h2>
+<p>Sportif SUV deneyimi ve premium sürüş konforu.</p>
 </div>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1494905998402-395d579af36f?q=80&w=1200&auto=format&fit=crop">
-<div class="card-content">
-<h3>Mercedes G63 AMG</h3>
-<p>Güçlü görünüm, agresif performans ve premium detaylar.</p>
+<div class="car-card">
+<img src="1E77547B-A49D-4769-8CE2-CE3C2ECC6960.jpeg">
+
+<div class="car-info">
+<h2>Mercedes Maybach</h2>
+<p>Ultra lüks sedan dünyasının en prestijli modellerinden biri.</p>
 </div>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1502161254066-6c74afbf07aa?q=80&w=1200&auto=format&fit=crop">
-<div class="card-content">
-<h3>Lamborghini Urus</h3>
-<p>Sportif SUV deneyimi ve benzersiz tasarım çizgileri.</p>
+<div class="car-card">
+<img src="73134C2B-05A4-4A36-B23E-8AD0646CA75F.png">
+
+<div class="car-info">
+<h2>Ferrari 488 GTB</h2>
+<p>Saf performans, agresif tasarım ve İtalyan mühendisliği.</p>
 </div>
 </div>
 
+<div class="car-card">
+<img src="8785FCE8-273D-499B-B370-3481D5DAC245.png">
+
+<div class="car-info">
+<h2>Range Rover Vogue</h2>
+<p>Modern SUV lüksünü güçlü motor ile birleştiren ikonik model.</p>
+</div>
+</div>
+
+<div class="car-card">
+<img src="AC1DB475-2A48-44E2-A6B7-4F771D0225FE.png">
+
+<div class="car-info">
+<h2>Lamborghini Urus</h2>
+<p>Süper spor ruhunu SUV dünyasına taşıyan canavar.</p>
+</div>
+</div>
+
+<div class="car-card">
+<img src="35C20A1F-C4C5-4C2D-AE1C-BB8B82E47414.png">
+
+<div class="car-info">
+<h2>Audi RS6</h2>
+<p>Günlük kullanım ve yarış ruhunu bir araya getiren performans aracı.</p>
+</div>
 </div>
 
 </section>
 
-<section class="section">
-
 <h2 class="section-title">Şubelerimiz</h2>
 
-<div class="branches">
+<section class="branches">
 
 <div class="branch">
 <h3>Esenyurt</h3>
@@ -219,13 +271,14 @@ Instagram
 <p>3. Şube</p>
 </div>
 
-</div>
-
 </section>
 
 <footer>
+
 <h2>AYDIN AUTO</h2>
-<p>Sıfır ve 2. El Premium Otomobiller</p>
+
+<p>Sıfır & 2. El Premium Otomobiller</p>
+
 </footer>
 
 </body>

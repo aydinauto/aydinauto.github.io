@@ -102,7 +102,7 @@ font-weight:900;
 
 display:flex;
 align-items:center;
-width:140px;
+width:60px;
 overflow:hidden;
 }
 .logo img{

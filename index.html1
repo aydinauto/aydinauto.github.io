@@ -1,923 +1,331 @@
+<!-- ÇEKİLİŞ MENÜSÜ -->
 
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="menu-item" onclick="openGiveaway()">
+🎁 Çekiliş
+</div>
 
-<title>AYDIN AUTO</title>
+<!-- GIVEAWAY POPUP -->
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<div id="giveawayPopup">
+
+<div class="giveaway-box">
+
+<div class="close-giveaway" onclick="closeGiveaway()">
+✕
+</div>
+
+<h1>🎁 MINI COOPER ÇEKİLİŞİ</h1>
+
+<img src="02F96023-A74D-4FDE-A4A1-1C2C9EDD6195.jpeg" class="giveaway-car">
+
+<p class="giveaway-text">
+AYDIN AUTO olarak 3 kişiye MINI COOPER hediye ediyoruz.
+</p>
+
+<div class="counter-box">
+
+<div class="counter-card">
+<h2>719</h2>
+<span>Katılımcı</span>
+</div>
+
+<div class="counter-card">
+<h2>3</h2>
+<span>Kazanan</span>
+</div>
+
+<div class="counter-card">
+<h2>2 Gün</h2>
+<span>Kalan Süre</span>
+</div>
+
+</div>
+
+<div class="rules">
+
+<h3>Katılım Şartları</h3>
+
+<ul>
+
+<li>Instagram hesabını takip et</li>
+
+<li>Son gönderiyi beğen</li>
+
+<li>2 arkadaşını etiketle</li>
+
+<li>Hikayende paylaş</li>
+
+</ul>
+
+</div>
+
+<a href="https://instagram.com/aydinautoresmi" class="insta-btn">
+Instagram’a Git
+</a>
+
+<button class="join-btn" onclick="joinGiveaway()">
+Çekilişe Katıl
+</button>
+
+<p id="joinText"></p>
+
+</div>
+
+</div>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-html,body{
-overflow-x:hidden;
-background:#050505;
-color:white;
-scroll-behavior:smooth;
-}
-
-/* LOADER */
-
-#loader{
+#giveawayPopup{
 position:fixed;
-width:100%;
-height:100%;
-background:black;
+inset:0;
+background:rgba(0,0,0,.92);
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
 z-index:999999;
-animation:hideLoader 1s forwards;
-animation-delay:1s;
+padding:20px;
+backdrop-filter:blur(12px);
+animation:fadeIn .5s;
 }
 
-#loader h1{
-font-size:55px;
-font-weight:900;
-animation:pulse 1s infinite;
-}
-
-@keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.08);}
-100%{transform:scale(1);}
-}
-
-@keyframes hideLoader{
-to{
+@keyframes fadeIn{
+from{
 opacity:0;
-visibility:hidden;
+transform:scale(.9);
+}
+to{
+opacity:1;
+transform:scale(1);
 }
 }
 
-/* GLOW */
+.giveaway-box{
+background:#090909;
+width:100%;
+max-width:420px;
+border-radius:35px;
+padding:30px;
+position:relative;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 0 60px rgba(255,215,0,.08);
+text-align:center;
+overflow:hidden;
+}
 
-.glow{
-position:fixed;
-width:500px;
-height:500px;
-background:#ffd70015;
+.giveaway-box::before{
+content:'';
+position:absolute;
+width:250px;
+height:250px;
+background:#ffd700;
 filter:blur(120px);
-border-radius:50%;
+opacity:.15;
 top:-100px;
 right:-100px;
-z-index:-1;
-animation:moveGlow 8s infinite alternate;
 }
 
-@keyframes moveGlow{
-from{transform:translate(0,0);}
-to{transform:translate(-100px,100px);}
-}
-
-/* PARTICLES */
-
-.particle{
-position:fixed;
-width:4px;
-height:4px;
-background:white;
-border-radius:50%;
-opacity:.3;
-animation:particleMove linear infinite;
-z-index:-1;
-}
-
-@keyframes particleMove{
-from{transform:translateY(100vh);}
-to{transform:translateY(-100vh);}
-}
-
-/* NAVBAR */
-
-nav{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-padding:18px 22px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(0,0,0,.45);
-backdrop-filter:blur(12px);
-z-index:999;
-border-bottom:1px solid rgba(255,255,255,.05);
-}
-
-.logo{
-font-size:30px;
-font-weight:900;
-}
-
-.menu-btn{
-font-size:35px;
-cursor:pointer;
-}
-
-/* MENU */
-
-#menu{
-position:fixed;
-top:0;
-right:-100%;
-width:80%;
-height:100%;
-background:#0d0d0d;
-z-index:99999;
-padding:90px 30px;
-transition:.5s;
-}
-
-#menu.active{
-right:0;
-}
-
-.close-btn{
+.close-giveaway{
 position:absolute;
 top:20px;
-right:25px;
-font-size:40px;
+right:20px;
+font-size:34px;
 cursor:pointer;
-}
-
-#menu a{
-display:block;
-margin:25px 0;
-font-size:28px;
 color:white;
-text-decoration:none;
 }
 
-/* HERO */
-
-.hero{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.85)),
-url('35C20A1F-C4C5-4C2D-AE1C-BB8B82E47414.png');
-
-background-size:cover;
-background-position:center;
-}
-
-.hero-content h1{
-font-size:70px;
-font-weight:900;
+.giveaway-box h1{
+font-size:34px;
 margin-bottom:20px;
-animation:fadeUp 1.2s;
+font-weight:900;
 }
 
-.hero-content p{
-font-size:20px;
-opacity:.9;
-margin-bottom:35px;
-animation:fadeUp 1.5s;
+.giveaway-car{
+width:100%;
+height:240px;
+object-fit:cover;
+border-radius:25px;
+margin-bottom:20px;
 }
 
-.hero-buttons{
-display:flex;
-justify-content:center;
-gap:15px;
-flex-wrap:wrap;
+.giveaway-text{
+opacity:.82;
+line-height:1.7;
+margin-bottom:25px;
 }
 
-.hero-buttons button{
-padding:18px 35px;
-border:none;
-border-radius:16px;
-font-size:18px;
+.counter-box{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-bottom:25px;
+}
+
+.counter-card{
+background:#151515;
+padding:18px 10px;
+border-radius:18px;
+}
+
+.counter-card h2{
+font-size:26px;
+color:#ffd700;
+margin-bottom:5px;
+}
+
+.counter-card span{
+font-size:13px;
+opacity:.7;
+}
+
+.rules{
+background:#121212;
+padding:20px;
+border-radius:20px;
+margin-bottom:20px;
+text-align:left;
+}
+
+.rules h3{
+margin-bottom:12px;
+}
+
+.rules ul{
+padding-left:18px;
+line-height:2;
+opacity:.8;
+}
+
+.insta-btn{
+display:block;
+background:white;
+color:black;
+padding:18px;
+border-radius:18px;
 font-weight:700;
+text-decoration:none;
+margin-bottom:15px;
+transition:.3s;
+}
+
+.insta-btn:hover{
+transform:translateY(-3px);
+}
+
+.join-btn{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+background:#ffd700;
+font-size:18px;
+font-weight:800;
 cursor:pointer;
 transition:.3s;
 }
 
-.hero-buttons button:hover{
-transform:translateY(-5px);
+.join-btn:hover{
+transform:scale(1.03);
 }
 
-.btn1{
-background:white;
-color:black;
+#joinText{
+margin-top:18px;
+font-size:15px;
+color:#00ff88;
+font-weight:600;
 }
 
-.btn2{
-background:#ffd700;
-color:black;
-}
-
-/* TITLES */
-
-.section-title{
-font-size:45px;
-font-weight:900;
-padding:25px;
-}
-
-/* STATS */
-
-.stats{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px;
-padding:20px;
-}
-
-.stat{
-background:#101010;
-padding:30px;
-border-radius:25px;
-text-align:center;
-border:1px solid rgba(255,255,255,.05);
-}
-
-.stat h2{
-font-size:40px;
-color:#ffd700;
-}
-
-/* CARS */
-
-.cars{
-padding:20px;
-display:flex;
-flex-direction:column;
-gap:30px;
-}
-
-.car{
-background:#101010;
-border-radius:30px;
-overflow:hidden;
-transition:.4s;
-position:relative;
-}
-
-.car:hover{
-transform:translateY(-8px);
-box-shadow:0 0 30px rgba(255,215,0,.15);
-}
-
-.car img{
-width:100%;
-height:280px;
-object-fit:cover;
-}
-
-.favorite{
-position:absolute;
-top:20px;
-right:20px;
-width:50px;
-height:50px;
-background:rgba(0,0,0,.5);
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:24px;
-cursor:pointer;
-}
-
-.view-count{
-position:absolute;
-bottom:20px;
-right:20px;
-background:#00000099;
-padding:10px 15px;
-border-radius:12px;
-font-size:14px;
-}
-
-.car-content{
-padding:25px;
-}
-
-.car-content h2{
-font-size:38px;
-margin-bottom:12px;
-}
-
-.car-content p{
-opacity:.8;
-line-height:1.7;
-margin-bottom:20px;
-}
-
-.specs{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-}
-
-.spec{
-background:#181818;
-padding:14px;
-border-radius:14px;
-text-align:center;
-}
-
-/* FILTER */
-
-.filter{
-padding:20px;
+.language-box{
 display:flex;
 gap:10px;
-overflow:auto;
-}
-
-.filter button{
-padding:14px 22px;
-background:#151515;
-border:none;
-border-radius:14px;
-color:white;
-font-weight:700;
-}
-
-/* TRADE */
-
-.trade{
-padding:20px;
-}
-
-.trade-box{
-background:#101010;
-padding:30px;
-border-radius:30px;
-}
-
-.trade input,
-.trade select{
-width:100%;
-padding:18px;
-margin:12px 0;
-background:#181818;
-border:none;
-border-radius:15px;
-color:white;
-}
-
-.trade button{
-width:100%;
-padding:18px;
-background:#ffd700;
-border:none;
-border-radius:15px;
-font-weight:700;
-font-size:18px;
-margin-top:10px;
-}
-
-#priceResult{
-margin-top:20px;
-font-size:24px;
-font-weight:700;
-color:#ffd700;
-}
-
-/* APPOINTMENT */
-
-.appointment{
-padding:20px;
-}
-
-.appointment-box{
-background:#101010;
-padding:30px;
-border-radius:30px;
-}
-
-.appointment input{
-width:100%;
-padding:18px;
-margin:12px 0;
-background:#181818;
-border:none;
-border-radius:15px;
-color:white;
-}
-
-.appointment button{
-width:100%;
-padding:18px;
-background:white;
-color:black;
-border:none;
-border-radius:15px;
-font-weight:700;
-font-size:18px;
-}
-
-/* AI */
-
-.ai{
-padding:20px;
-}
-
-.ai-box{
-background:#101010;
-padding:25px;
-border-radius:30px;
-}
-
-.chat{
-height:250px;
-overflow:auto;
-background:#151515;
-padding:15px;
-border-radius:15px;
-margin-bottom:15px;
-}
-
-.msg{
-background:#1d1d1d;
-padding:12px;
-border-radius:12px;
-margin:10px 0;
-}
-
-.ai input{
-width:100%;
-padding:18px;
-border:none;
-border-radius:15px;
-background:#181818;
-color:white;
-}
-
-.ai button{
-width:100%;
-padding:16px;
-margin-top:12px;
-background:#ffd700;
-border:none;
-border-radius:15px;
-font-weight:700;
-}
-
-/* REVIEWS */
-
-.reviews{
-padding:20px;
-display:flex;
-flex-direction:column;
-gap:20px;
-}
-
-.review{
-background:#101010;
-padding:25px;
-border-radius:25px;
-}
-
-/* CONTACT */
-
-.contact{
-padding:20px;
-}
-
-.contact-box{
-background:#101010;
-padding:30px;
-border-radius:30px;
-}
-
-.contact-item{
-margin:18px 0;
-font-size:20px;
-}
-
-iframe{
-width:100%;
-height:300px;
-border:none;
-border-radius:25px;
-margin-top:20px;
-}
-
-/* FLOAT */
-
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-width:70px;
-height:70px;
-background:#25D366;
-border-radius:50%;
-display:flex;
+margin-top:15px;
 justify-content:center;
-align-items:center;
-font-size:35px;
-z-index:999;
-box-shadow:0 0 30px #25D366;
-animation:bounce 1.5s infinite;
-text-decoration:none;
 }
 
-@keyframes bounce{
-0%{transform:translateY(0);}
-50%{transform:translateY(-8px);}
-100%{transform:translateY(0);}
-}
-
-/* FOOTER */
-
-footer{
-padding:40px 20px;
-text-align:center;
-opacity:.7;
-}
-
-/* ANIMATION */
-
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(40px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+.lang-btn{
+padding:12px 18px;
+background:#151515;
+border-radius:14px;
+cursor:pointer;
+font-weight:700;
 }
 
 </style>
-</head>
-
-<body>
-
-<div class="glow"></div>
-
-<div id="loader">
-<h1>AYDIN AUTO</h1>
-</div>
-
-<nav>
-
-<div class="logo">
-AYDIN AUTO
-</div>
-
-<div class="menu-btn" onclick="openMenu()">
-☰
-</div>
-
-</nav>
-
-<div id="menu">
-
-<div class="close-btn" onclick="closeMenu()">
-✕
-</div>
-
-<a href="#">Ana Sayfa</a>
-<a href="#cars">Araçlarımız</a>
-<a href="#trade">Takas</a>
-<a href="#appointment">Randevu</a>
-<a href="#ai">AI Destek</a>
-<a href="#contact">İletişim</a>
-
-</div>
-
-<section class="hero">
-
-<div class="hero-content">
-
-<h1>AYDIN AUTO</h1>
-
-<p>
-Premium otomobil deneyimi ve lüks yaşam tarzı.
-</p>
-
-<div class="hero-buttons">
-
-<button class="btn1">
-Araçlarımız
-</button>
-
-<button class="btn2">
-İletişim
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="stats">
-
-<div class="stat">
-<h2>500+</h2>
-<p>Satılan Araç</p>
-</div>
-
-<div class="stat">
-<h2>4.9★</h2>
-<p>Müşteri Puanı</p>
-</div>
-
-<div class="stat">
-<h2>24/7</h2>
-<p>Destek</p>
-</div>
-
-<div class="stat">
-<h2>12+</h2>
-<p>Premium Marka</p>
-</div>
-
-</section>
-
-<div class="filter">
-<button>Tümü</button>
-<button>SUV</button>
-<button>Sedan</button>
-<button>Sport</button>
-<button>Luxury</button>
-</div>
-
-<h1 class="section-title">
-Araçlarımız
-</h1>
-
-<section class="cars" id="cars">
-
-<div class="car">
-
-<div class="favorite">❤️</div>
-
-<div class="view-count">
-👁 2.541 görüntülenme
-</div>
-
-<img src="02F96023-A74D-4FDE-A4A1-1C2C9EDD6195.jpeg">
-
-<div class="car-content">
-
-<h2>Lamborghini Urus</h2>
-
-<p>
-Süper spor SUV deneyimi.
-</p>
-
-<div class="specs">
-
-<div class="spec">2024</div>
-<div class="spec">650 HP</div>
-<div class="spec">8.000 KM</div>
-<div class="spec">4.0 V8</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="car">
-
-<div class="favorite">🔥</div>
-
-<div class="view-count">
-👁 1.824 görüntülenme
-</div>
-
-<img src="1E77547B-A49D-4769-8CE2-CE3C2ECC6960.jpeg">
-
-<div class="car-content">
-
-<h2>Mercedes G63 AMG</h2>
-
-<p>
-Gerçek AMG ruhu.
-</p>
-
-<div class="specs">
-
-<div class="spec">2025</div>
-<div class="spec">585 HP</div>
-<div class="spec">5.000 KM</div>
-<div class="spec">4.0 V8</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="trade" id="trade">
-
-<h1 class="section-title">
-Takas Fiyatı Al
-</h1>
-
-<div class="trade-box">
-
-<input type="text" id="brand" placeholder="Marka">
-<input type="text" id="model" placeholder="Model">
-<input type="number" id="year" placeholder="Yıl">
-
-<button onclick="calculatePrice()">
-Fiyat Hesapla
-</button>
-
-<div id="priceResult"></div>
-
-</div>
-
-</section>
-
-<section class="appointment" id="appointment">
-
-<h1 class="section-title">
-Randevu Oluştur
-</h1>
-
-<div class="appointment-box">
-
-<input type="text" placeholder="Ad Soyad">
-<input type="date">
-<input type="time">
-
-<button>
-Randevu Oluştur
-</button>
-
-</div>
-
-</section>
-
-<section class="ai" id="ai">
-
-<h1 class="section-title">
-AI Müşteri Hizmeti
-</h1>
-
-<div class="ai-box">
-
-<div class="chat" id="chat">
-
-<div class="msg">
-🤖 Merhaba, size nasıl yardımcı olabilirim?
-</div>
-
-</div>
-
-<input type="text"
-id="userInput"
-placeholder="Mesaj yazın...">
-
-<button onclick="sendMessage()">
-Gönder
-</button>
-
-</div>
-
-</section>
-
-<section class="reviews">
-
-<h1 class="section-title">
-Müşteri Yorumları
-</h1>
-
-<div class="review">
-★★★★★ Hayatımda gördüğüm en premium galeri.
-</div>
-
-<div class="review">
-★★★★★ Araçlar kusursuzdu.
-</div>
-
-<div class="review">
-★★★★★ Gerçek VIP hizmet.
-</div>
-
-</section>
-
-<section class="contact" id="contact">
-
-<h1 class="section-title">
-İletişim
-</h1>
-
-<div class="contact-box">
-
-<div class="contact-item">
-📞 +90 212 519 70 12
-</div>
-
-<div class="contact-item">
-📧 aydinauto@help.business
-</div>
-
-<div class="contact-item">
-📍 İstanbul
-</div>
-
-<iframe src="https://maps.google.com/maps?q=istanbul&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-
-</div>
-
-</section>
-
-<a class="whatsapp"
-href="https://wa.me/902125197012">
-📞
-</a>
-
-<footer>
-© 2026 AYDIN AUTO • Premium Experience
-</footer>
 
 <script>
 
-for(let i=0;i<60;i++){
+function closeGiveaway(){
+document.getElementById("giveawayPopup").style.display="none";
+}
 
-let p=document.createElement("div");
+function openGiveaway(){
+document.getElementById("giveawayPopup").style.display="flex";
+}
 
-p.classList.add("particle");
+function joinGiveaway(){
 
-p.style.left=Math.random()*100+"vw";
+document.getElementById("joinText").innerHTML=
+"🎉 Çekilişe başarıyla katıldınız!";
 
-p.style.animationDuration=
-(Math.random()*20+10)+"s";
-
-document.body.appendChild(p);
+confettiEffect();
 
 }
 
-function openMenu(){
-document.getElementById("menu").classList.add("active");
+function confettiEffect(){
+
+for(let i=0;i<80;i++){
+
+let conf=document.createElement("div");
+
+conf.style.position="fixed";
+conf.style.width="10px";
+conf.style.height="10px";
+conf.style.background=
+["#ffd700","#ffffff","#00ff88","#ff0033"]
+[Math.floor(Math.random()*4)];
+
+conf.style.left=Math.random()*100+"vw";
+conf.style.top="-20px";
+conf.style.zIndex="9999999";
+conf.style.borderRadius="50%";
+
+document.body.appendChild(conf);
+
+let fall=Math.random()*5+3;
+
+conf.animate([
+
+{
+transform:"translateY(0px) rotate(0deg)",
+opacity:1
+},
+
+{
+transform:`translateY(${window.innerHeight+200}px)
+rotate(720deg)`,
+opacity:0
 }
 
-function closeMenu(){
-document.getElementById("menu").classList.remove("active");
-}
+],{
 
-function calculatePrice(){
+duration:fall*1000
 
-let year=
-document.getElementById("year").value;
+});
 
-let price=
-5000000-(2026-year)*150000;
-
-if(price<300000){
-price=300000;
-}
-
-document.getElementById("priceResult").innerHTML=
-"Tahmini Teklif: "+
-price.toLocaleString()+" TL";
+setTimeout(()=>{
+conf.remove();
+},6000);
 
 }
 
-function sendMessage(){
+}
 
-let input=
-document.getElementById("userInput");
-
-let chat=
-document.getElementById("chat");
-
-if(input.value=="") return;
-
-chat.innerHTML+=
-'<div class="msg">🧑 '+input.value+'</div>';
+/* OTOMATİK AÇILIŞ */
 
 setTimeout(()=>{
 
-chat.innerHTML+=
-'<div class="msg">🤖 Premium destek ekibimiz size yardımcı olacaktır.</div>';
+document.getElementById("giveawayPopup")
+.style.display="flex";
 
-chat.scrollTop=chat.scrollHeight;
-
-},700);
-
-input.value="";
-
-}
+},1200);
 
 </script>
-
-</body>
-</html>

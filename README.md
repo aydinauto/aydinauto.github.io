@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -34,13 +34,29 @@ background:black;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:42px;
-font-weight:800;
+flex-direction:column;
 z-index:99999;
-animation:loader 2.5s forwards;
+animation:hideLoader 4s forwards;
 }
 
-@keyframes loader{
+#loader h1{
+font-size:55px;
+font-weight:800;
+animation:zoom 1.5s infinite alternate;
+}
+
+#loader p{
+margin-top:15px;
+font-size:20px;
+color:#aaa;
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.08);}
+}
+
+@keyframes hideLoader{
 0%{opacity:1;}
 85%{opacity:1;}
 100%{
@@ -132,7 +148,7 @@ animation:fadeUp 1.5s;
 }
 
 .hero-content h1{
-font-size:75px;
+font-size:78px;
 font-weight:800;
 }
 
@@ -152,7 +168,7 @@ flex-wrap:wrap;
 }
 
 .hero-buttons a{
-padding:15px 30px;
+padding:16px 32px;
 border-radius:15px;
 font-size:18px;
 text-decoration:none;
@@ -170,10 +186,30 @@ background:#d4af37;
 color:black;
 }
 
+/* LANGUAGE */
+
+.languages{
+position:absolute;
+top:100px;
+right:20px;
+display:flex;
+gap:10px;
+z-index:999;
+}
+
+.languages button{
+padding:10px 15px;
+border:none;
+border-radius:10px;
+background:#151515;
+color:white;
+cursor:pointer;
+}
+
 /* TITLES */
 
 .section-title{
-font-size:58px;
+font-size:55px;
 font-weight:800;
 padding:70px 25px 20px;
 }
@@ -197,10 +233,6 @@ text-align:center;
 .stat h2{
 font-size:42px;
 margin-bottom:10px;
-}
-
-.stat p{
-color:#bbb;
 }
 
 /* CARS */
@@ -232,12 +264,22 @@ object-fit:cover;
 display:block;
 }
 
+.favorite{
+position:absolute;
+top:20px;
+right:20px;
+font-size:30px;
+background:rgba(0,0,0,0.4);
+padding:10px;
+border-radius:50%;
+}
+
 .car-info{
 padding:28px;
 }
 
 .car-info h2{
-font-size:42px;
+font-size:40px;
 margin-bottom:15px;
 }
 
@@ -272,16 +314,6 @@ font-size:14px;
 font-weight:700;
 }
 
-.favorite{
-position:absolute;
-top:20px;
-right:20px;
-font-size:28px;
-background:rgba(0,0,0,0.5);
-padding:10px;
-border-radius:50%;
-}
-
 /* WHY */
 
 .why{
@@ -302,11 +334,6 @@ font-size:30px;
 margin-bottom:10px;
 }
 
-.why-box p{
-color:#bbb;
-line-height:1.7;
-}
-
 /* REVIEWS */
 
 .reviews{
@@ -320,11 +347,6 @@ gap:20px;
 background:#101010;
 padding:25px;
 border-radius:25px;
-}
-
-.review h4{
-font-size:24px;
-margin-bottom:10px;
 }
 
 /* CONTACT */
@@ -393,7 +415,7 @@ font-size:16px;
 color:#777;
 }
 
-/* FLOATING */
+/* FLOAT */
 
 .float{
 position:fixed;
@@ -413,7 +435,7 @@ z-index:999;
 box-shadow:0 0 25px rgba(37,211,102,0.5);
 }
 
-/* ANIMATION */
+/* ANIMATIONS */
 
 @keyframes fadeUp{
 from{
@@ -431,8 +453,11 @@ transform:translateY(0);
 
 <body>
 
+<!-- LOADER -->
+
 <div id="loader">
-AYDIN AUTO
+<h1>AYDIN AUTO</h1>
+<p>Hoşgeldiniz</p>
 </div>
 
 <!-- NAVBAR -->
@@ -449,6 +474,14 @@ AYDIN AUTO
 
 </div>
 
+<!-- LANGUAGE -->
+
+<div class="languages">
+<button onclick="setLang('tr')">TR</button>
+<button onclick="setLang('en')">EN</button>
+<button onclick="setLang('ar')">AR</button>
+</div>
+
 <!-- MENU -->
 
 <div class="side-menu" id="sideMenu">
@@ -459,7 +492,6 @@ AYDIN AUTO
 
 <a href="#">Ana Sayfa</a>
 <a href="#cars">Araçlarımız</a>
-<a href="#why">Neden Biz?</a>
 <a href="#reviews">Yorumlar</a>
 <a href="#contact">İletişim</a>
 
@@ -471,11 +503,12 @@ AYDIN AUTO
 
 <div class="hero-content">
 
-<h1>AYDIN AUTO</h1>
+<h1 id="title">
+AYDIN AUTO
+</h1>
 
-<p>
-Premium otomobil deneyimi.<br>
-Lüks ve performans bir arada.
+<p id="subtitle">
+Premium otomobil deneyimi.
 </p>
 
 <div class="hero-buttons">
@@ -500,12 +533,12 @@ Araçlarımız
 
 <div class="stat">
 <h2>250+</h2>
-<p>Mutlu Müşteri</p>
+<p>Müşteri</p>
 </div>
 
 <div class="stat">
 <h2>120+</h2>
-<p>Premium Araç</p>
+<p>Araç</p>
 </div>
 
 <div class="stat">
@@ -539,14 +572,16 @@ Araçlarımız
 <h2>BMW 7 Serisi</h2>
 
 <p>
-Luxury sedan deneyimi ve premium sürüş hissi.
+Luxury sedan deneyimi.
 </p>
 
 <div class="specs">
+
 <div class="spec">2024</div>
 <div class="spec">374 HP</div>
 <div class="spec">12.000 KM</div>
 <div class="spec">3.0 Motor</div>
+
 </div>
 
 <div class="badge">
@@ -557,28 +592,35 @@ STOKTA
 
 </div>
 
-</section>
+<div class="car">
 
-<!-- WHY -->
+<div class="favorite">🔥</div>
 
-<h1 class="section-title" id="why">
-Neden Biz?
-</h1>
+<img src="73134C2B-05A4-4A36-B23E-8AD0646CA75F.png">
 
-<section class="why">
+<div class="car-info">
 
-<div class="why-box">
-<h3>Premium Hizmet</h3>
+<h2>Mercedes G63 AMG</h2>
+
 <p>
-VIP müşteri deneyimi ve güvenilir araçlar.
+Gerçek AMG ruhu.
 </p>
+
+<div class="specs">
+
+<div class="spec">585 HP</div>
+<div class="spec">2025</div>
+<div class="spec">4.0 V8</div>
+<div class="spec">8.000 KM</div>
+
 </div>
 
-<div class="why-box">
-<h3>Ekspertiz Garantisi</h3>
-<p>
-Tüm araçlarımız detaylı ekspertiz kontrolünden geçmektedir.
-</p>
+<div class="badge">
+YENİ GELEN
+</div>
+
+</div>
+
 </div>
 
 </section>
@@ -592,17 +634,13 @@ Yorumlar
 <section class="reviews">
 
 <div class="review">
-<h4>Ahmet K.</h4>
-<p>
-“Gerçekten premium hizmet.”
-</p>
+<h3>Ahmet K.</h3>
+<p>Gerçekten premium hizmet.</p>
 </div>
 
 <div class="review">
-<h4>Emirhan T.</h4>
-<p>
-“Araçlar anlatıldığı gibi kusursuz.”
-</p>
+<h3>Emirhan T.</h3>
+<p>Araçlar anlatıldığı gibi.</p>
 </div>
 
 </section>
@@ -645,25 +683,38 @@ src="https://maps.google.com/maps?q=florya&t=&z=13&ie=UTF8&iwloc=&output=embed">
 <!-- FOOTER -->
 
 <div class="footer">
-
 © 2026 AYDIN AUTO
-
 </div>
 
 <!-- FLOAT -->
 
-<a
-href="https://wa.me/902125197012"
-class="float">
-
+<a href="https://wa.me/902125197012" class="float">
 ☎
-
 </a>
 
 <script>
 
 function toggleMenu(){
 document.getElementById("sideMenu").classList.toggle("active");
+}
+
+function setLang(lang){
+
+if(lang=="tr"){
+document.getElementById("subtitle").innerHTML=
+"Premium otomobil deneyimi.";
+}
+
+if(lang=="en"){
+document.getElementById("subtitle").innerHTML=
+"Premium automobile experience.";
+}
+
+if(lang=="ar"){
+document.getElementById("subtitle").innerHTML=
+"تجربة سيارات فاخرة";
+}
+
 }
 
 </script>

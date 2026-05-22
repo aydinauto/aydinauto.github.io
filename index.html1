@@ -607,10 +607,10 @@ transform:translateY(0);
 
 <nav>
 
-<div class="logo">
-AYDIN AUTO
-</div>
 
+<div class="logo">
+<img src="logo.png">
+</div>
 <div class="menu-btn" onclick="openMenu()">
 ☰
 </div>

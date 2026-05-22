@@ -987,5 +987,305 @@ document.getElementById("joinText").innerHTML=
 
 </script>
 
+<!-- TOP RIGHT EXTRA BUTTONS -->
+
+<div class="top-actions">
+
+<button onclick="toggleTheme()" id="themeBtn">
+🌙
+</button>
+
+<div class="lang-switch">
+
+<button onclick="setLang('tr')">TR</button>
+
+<button onclick="setLang('en')">EN</button>
+
+<button onclick="setLang('ar')">AR</button>
+
+</div>
+
+</div>
+
+<!-- FINANCE SYSTEM -->
+
+<section class="finance" id="finance">
+
+<h1 class="section-title">
+Finans & Taksit Hesaplama
+</h1>
+
+<div class="finance-box">
+
+<input type="number"
+id="carPrice"
+placeholder="Araç Fiyatı">
+
+<input type="number"
+id="downPayment"
+placeholder="Peşinat">
+
+<select id="month">
+
+<option value="12">12 Ay</option>
+<option value="24">24 Ay</option>
+<option value="36">36 Ay</option>
+<option value="48">48 Ay</option>
+
+</select>
+
+<button onclick="calculateFinance()">
+Taksit Hesapla
+</button>
+
+<div id="financeResult"></div>
+
+</div>
+
+</section>
+
+<style>
+
+/* TOP ACTIONS */
+
+.top-actions{
+position:fixed;
+top:80px;
+right:20px;
+display:flex;
+align-items:center;
+gap:12px;
+z-index:9999;
+}
+
+#themeBtn{
+width:50px;
+height:50px;
+border:none;
+border-radius:50%;
+background:#151515;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 0 20px rgba(255,255,255,.08);
+}
+
+.lang-switch{
+display:flex;
+gap:8px;
+}
+
+.lang-switch button{
+padding:12px 15px;
+border:none;
+border-radius:12px;
+background:#151515;
+color:white;
+font-weight:700;
+cursor:pointer;
+}
+
+/* FINANCE */
+
+.finance{
+padding:20px;
+}
+
+.finance-box{
+background:#101010;
+padding:30px;
+border-radius:30px;
+}
+
+.finance-box input,
+.finance-box select{
+width:100%;
+padding:18px;
+margin:12px 0;
+background:#181818;
+border:none;
+border-radius:15px;
+color:white;
+font-size:16px;
+}
+
+.finance-box button{
+width:100%;
+padding:18px;
+background:#ffd700;
+border:none;
+border-radius:15px;
+font-size:18px;
+font-weight:700;
+margin-top:10px;
+cursor:pointer;
+}
+
+#financeResult{
+margin-top:25px;
+font-size:24px;
+font-weight:800;
+color:#ffd700;
+line-height:1.8;
+}
+
+/* LIGHT MODE */
+
+body.light-mode{
+background:#f4f4f4;
+color:black;
+transition:.4s;
+}
+
+body.light-mode nav{
+background:rgba(255,255,255,.75);
+}
+
+body.light-mode .car,
+body.light-mode .trade-box,
+body.light-mode .finance-box,
+body.light-mode .ai-box,
+body.light-mode .review,
+body.light-mode .appointment-box,
+body.light-mode .contact-box,
+body.light-mode .stat{
+background:white;
+color:black;
+}
+
+body.light-mode .spec,
+body.light-mode .msg,
+body.light-mode .chat,
+body.light-mode input,
+body.light-mode select{
+background:#ececec;
+color:black;
+}
+
+body.light-mode #themeBtn,
+body.light-mode .lang-switch button{
+background:white;
+color:black;
+}
+
+</style>
+
+<script>
+
+/* DARK LIGHT MODE */
+
+function toggleTheme(){
+
+document.body.classList.toggle("light-mode");
+
+let btn=document.getElementById("themeBtn");
+
+if(document.body.classList.contains("light-mode")){
+
+btn.innerHTML="☀️";
+
+localStorage.setItem("theme","light");
+
+}else{
+
+btn.innerHTML="🌙";
+
+localStorage.setItem("theme","dark");
+
+}
+
+}
+
+/* SAVE THEME */
+
+window.onload=function(){
+
+let savedTheme=localStorage.getItem("theme");
+
+if(savedTheme==="light"){
+
+document.body.classList.add("light-mode");
+
+document.getElementById("themeBtn").innerHTML="☀️";
+
+}
+
+}
+
+/* LANGUAGE SYSTEM */
+
+function setLang(lang){
+
+if(lang==="en"){
+
+document.querySelector(".logo").innerHTML=
+"AYDIN AUTO";
+
+document.querySelector(".hero-content h1").innerHTML=
+"PREMIUM EXPERIENCE";
+
+document.querySelector(".hero-content p").innerHTML=
+"Luxury automobile experience and premium showroom.";
+
+}
+
+if(lang==="ar"){
+
+document.querySelector(".hero-content h1").innerHTML=
+"تجربة فاخرة";
+
+document.querySelector(".hero-content p").innerHTML=
+"معرض سيارات فاخر وتجربة مميزة.";
+
+}
+
+if(lang==="tr"){
+
+document.querySelector(".hero-content h1").innerHTML=
+"AYDIN AUTO";
+
+document.querySelector(".hero-content p").innerHTML=
+"Premium otomobil deneyimi ve ultra lüks galeri sistemi.";
+
+}
+
+}
+
+/* FINANCE SYSTEM */
+
+function calculateFinance(){
+
+let carPrice=
+parseInt(document.getElementById("carPrice").value);
+
+let downPayment=
+parseInt(document.getElementById("downPayment").value);
+
+let month=
+parseInt(document.getElementById("month").value);
+
+if(!carPrice || !downPayment){
+
+return;
+
+}
+
+let remaining=carPrice-downPayment;
+
+let monthly=
+(remaining/month)*1.18;
+
+monthly=Math.round(monthly);
+
+document.getElementById("financeResult").innerHTML=
+
+"💰 Aylık Tahmini Taksit:<br>"+
+
+monthly.toLocaleString()+" TL";
+
+}
+
+</script>
+
 </body>
 </html>

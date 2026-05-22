@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -664,7 +664,7 @@ Araçlarımız
 <h1>🎁 MINI COOPER ÇEKİLİŞİ</h1>
 
 <p>
-Instagram hesabımızı takip edip son gönderiyi beğenen 3 kişiye MINI COOPER hediye ediyoruz.
+Şanslı 3 Takipçimize Mini Cooper Hediye.
 </p>
 
 <div class="counter">
@@ -680,7 +680,7 @@ Instagram hesabımızı takip edip son gönderiyi beğenen 3 kişiye MINI COOPER
 </div>
 
 <div class="counter-card">
-<h2>2 Gün</h2>
+<h2>12 Gün</h2>
 <span>Kalan Süre</span>
 </div>
 
@@ -699,7 +699,7 @@ Instagram hesabımızı takip edip son gönderiyi beğenen 3 kişiye MINI COOPER
 <section class="stats">
 
 <div class="stat">
-<h2>500+</h2>
+<h2>200+</h2>
 <p>Satılan Araç</p>
 </div>
 
@@ -722,7 +722,6 @@ Instagram hesabımızı takip edip son gönderiyi beğenen 3 kişiye MINI COOPER
 
 <div class="filter">
 
-<button>Tümü</button>
 <button>SUV</button>
 <button>Sedan</button>
 <button>Sport</button>
@@ -748,10 +747,10 @@ Araçlarımız
 
 <div class="car-content">
 
-<h2>Lamborghini Urus</h2>
+<h2>Ferrari GTB </h2>
 
 <p>
-Süper spor SUV deneyimi.
+Süper spor deneyimi.
 </p>
 
 <div class="specs">
@@ -779,10 +778,10 @@ Süper spor SUV deneyimi.
 
 <div class="car-content">
 
-<h2>Mercedes G63 AMG</h2>
+<h2>Audi Rs6</h2>
 
 <p>
-Gerçek AMG ruhu.
+Gerçek spor ve lüks ruhu.
 </p>
 
 <div class="specs">
@@ -833,7 +832,7 @@ AI Müşteri Hizmeti
 <div class="chat" id="chat">
 
 <div class="msg">
-🤖 Merhaba, size nasıl yardımcı olabilirim?
+Merhaba, size nasıl yardımcı olabilirim?
 </div>
 
 </div>
@@ -877,11 +876,11 @@ Müşteri Yorumları
 </h1>
 
 <div class="review">
-★★★★★ Hayatımda gördüğüm en premium galeri.
+★★★★★ Buse hanıma ekstra ilgisi için teşşekürler.
 </div>
 
 <div class="review">
-★★★★★ Araçlar kusursuzdu.
+★★★★★ Gerçekten nadir araçların olduğu bir galeri.
 </div>
 
 <div class="review">
@@ -903,11 +902,11 @@ Müşteri Yorumları
 </div>
 
 <div class="contact-item">
-📧 aydinauto@help.business
+aydinauto@help.business
 </div>
 
 <div class="contact-item">
-📍 İstanbul
+📍 Florya / Esenyurt / Çorlu
 </div>
 
 <iframe src="https://maps.google.com/maps?q=istanbul&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>

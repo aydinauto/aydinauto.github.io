@@ -548,17 +548,17 @@ STOKTA VAR
 
 <div class="car-info">
 
-<h2>Mercedes G63 AMG</h2>
+<h2>Mercedes Maybach</h2>
 
 <p>
-Agresif AMG ruhu ve benzersiz SUV deneyimi.
+Agresif  ruhu ve benzersiz lüks deneyimi.
 </p>
 
 <div class="car-specs">
 
-<div class="spec">585 HP</div>
+<div class="spec">503 HP</div>
 <div class="spec">2025 Model</div>
-<div class="spec">4.0 V8</div>
+<div class="spec">V8</div>
 <div class="spec">8.000 KM</div>
 
 </div>
@@ -577,10 +577,10 @@ YENİ GELEN
 
 <div class="car-info">
 
-<h2>Ferrari 488 GTB</h2>
+<h2>Audi Rs6</h2>
 
 <p>
-Gerçek süper spor deneyimi ve eşsiz İtalyan tasarımı.
+Gerçek süper spor deneyimi ve eşsiz tasarımı.
 </p>
 
 <div class="car-specs">
@@ -642,14 +642,14 @@ Müşteri Yorumları
 <section class="reviews">
 
 <div class="review">
-<h4>Ahmet K.</h4>
+<h4>Alara A.</h4>
 <p>
 “Hayatımda gördüğüm en profesyonel galeri hizmetlerinden biri.”
 </p>
 </div>
 
 <div class="review">
-<h4>Emirhan T.</h4>
+<h4>Buse T.</h4>
 <p>
 “Araçlar gerçekten anlatıldığı gibi kusursuz durumda.”
 </p>
